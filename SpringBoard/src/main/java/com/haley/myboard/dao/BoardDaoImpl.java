@@ -29,4 +29,27 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectList("board.showList");
 	}
 
+	// 3. 게시글 상세보기 처리
+
+	// 3-1) 글 번호 기준 게시글 가져오기
+	@Override
+	public BoardVO getBoard(int bno) {
+
+		return sqlSession.selectOne("board.getBoard", bno);
+	}
+
+	// 3-2) 조회수 1 증가
+	@Override
+	public int updateCount(int bno) {
+
+		return sqlSession.update("board.updateCount", bno);
+	}
+
+	// 4. 게시글 삭제
+	@Override
+	public int deleteBoard(int bno) {
+
+		return sqlSession.delete("board.deleteBoard", bno);
+	}
+
 }

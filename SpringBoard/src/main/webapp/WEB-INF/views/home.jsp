@@ -11,7 +11,7 @@
 			<a href="board/write"><h3 class="box-title">게시판 글쓰기</h3></a>
 		</div>
 	</div>
-	
+
 	<!-- 게시글 목록 보기 추가 -->
 	<div class="box">
 		<div class="box-header with-border">

@@ -12,6 +12,12 @@
 	<!-- 상단의 공통된 디자인 적용하기 -->
 	<%@include file="../include/header.jsp"%>
 
+	<!-- 게시글 삭제 후 리다이렉트를 통해 해당 페이지로 이동 할 경우 한 번만 출력되는 메세지 -->
+	<div class="box-header with-border">
+		<h3 class="box-title">${msg}</h3>
+	</div>
+
+
 	<!-- 데이터 출력을 위한 bootstrap 코드 작성  -->
 	<div class="box-body">
 		<table class="table table-bordered">
@@ -28,14 +34,41 @@
 			<c:forEach var="vo" items="${list}">
 				<tr>
 					<td>${vo.bno}</td>
-					<td>${vo.title}</td>
+					<!-- 상세보기를 위해 제목에 링크 설정 & 파라미터로 bno값 넘겨주기 -->
+					<td><a href="detail?bno=${vo.bno}">${vo.title}</a></td>
 					<td>${vo.id}</td>
 					<td>${vo.regdate}</td>
-					<td>${vo.readcnt}</td>
+					<td align="right"><span class="badge bg-blue">${vo.readcnt}&nbsp;</span></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+
+	<!-- 버튼 추가 -->
+	<div class="box-footer">
+		<div class="text-center">
+			<button id="mainBt" class="btn btn-success">메인</button>
+			<button id="writeBt" class="btn btn-danger">글 작성</button>
+		</div>
+	</div>
+
+	<!-- Java Script로 버튼 클릭 처리 -->
+	<script>
+		// JQuery 사용
+		$(function() {
+			// main으로 이동
+			$('#mainBt').on('click', function() {
+				location.href = "../";
+			});
+		});
+
+		$(function() {
+			// 글 작성 페이지로 이동
+			$('#writeBt').on('click', function() {
+				location.href = "write";
+			});
+		});
+	</script>
 
 	<!-- 하단의 공통된 디자인 적용하기 -->
 	<%@include file="../include/footer.jsp"%>

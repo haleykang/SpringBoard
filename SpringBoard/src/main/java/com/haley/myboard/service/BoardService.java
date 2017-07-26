@@ -19,4 +19,14 @@ public interface BoardService {
 	// 2. 글 목록 보기 처리 메소드
 	// 매개 변수가 없는 경우 DAO와 Service의 코드는 동일
 	public List<BoardVO> showList();
+
+	// 3. 게시글 상세보기 처리 메소드
+	public BoardVO getBoard(int bno);
+
+	// 4. 게시글 삭제 구현
+	public int deleteBoard(int bno);
+	
+	// 5. 게시글 수정 구현
+	public BoardVO updateBoard(int bno);
+
 }

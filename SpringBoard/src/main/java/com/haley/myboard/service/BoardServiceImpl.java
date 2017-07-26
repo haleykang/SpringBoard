@@ -45,4 +45,27 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.showList();
 	}
 
+	// 3. 게시글 상세보기 처리
+	@Override
+	public BoardVO getBoard(int bno) {
+		// 1) 조회수 1 증가
+		boardDao.updateCount(bno);
+		// 2) 글 번호에 따른 테이블 데이터 반환
+		return boardDao.getBoard(bno);
+	}
+
+	// 4. 게시글 삭제 처리 함수
+	@Override
+	public int deleteBoard(int bno) {
+
+		return boardDao.deleteBoard(bno);
+	}
+
+	// 5. 게시글 수정 처리 함수
+	@Override
+	public BoardVO updateBoard(int bno) {
+		// getBoard() 함수를 재사용해서 글 번호가 일치하는 테이블 값 가져오기
+		return boardDao.getBoard(bno);
+	}
+
 }

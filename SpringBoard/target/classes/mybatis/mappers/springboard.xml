@@ -18,7 +18,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 글 번호가 높은 글이 위로 올라오도록 정렬 -->
 	<select id="showList" resultType="BoardVO">
 		select * from springboard
-		order by bno desc
+		order
+		by bno desc
 	</select>
 
+	<!-- 3. 상세보기 -->
+	<!-- 3-1)public BoardVO getBoard(int bno); -->
+	<select id="getBoard" resultType="BoardVO" parameterType="java.lang.Integer">
+		select
+		* from springboard
+		where bno = #{bno}
+	</select>
+
+	<!-- 3-2)public int updateCount(int bno); -->
+	<update id="updateCount" parameterType="java.lang.Integer">
+		update springboard
+		set
+		readcnt = readcnt + 1
+		where bno = #{bno}
+	</update>
+
+	<!-- 4. 게시글 삭제 -->
+	<!-- public int deleteBoard(int bno); -->
+	<delete id="deleteBoard" parameterType="java.lang.Integer">
+		delete from springboard
+		where bno = #{bno}
+	</delete>
+	
+	
 </mapper>
