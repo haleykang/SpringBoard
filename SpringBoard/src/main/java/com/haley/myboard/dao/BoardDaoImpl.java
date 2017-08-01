@@ -52,4 +52,10 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.delete("board.deleteBoard", bno);
 	}
 
+	@Override
+	public int myUpdate(BoardVO vo) {
+
+		return sqlSession.update("board.myUpdate", vo);
+	}
+
 }

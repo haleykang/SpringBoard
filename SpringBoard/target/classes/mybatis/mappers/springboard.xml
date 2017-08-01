@@ -44,6 +44,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from springboard
 		where bno = #{bno}
 	</delete>
-	
-	
+
+	<!-- 5. 게시글 수정 -->
+	<!-- public int updateBoard(BoardVO vo); -->
+	<update id="myUpdate" parameterType="java.lang.Integer">
+		update springboard
+		set
+		title=#{title},content=#{content}
+		where bno = #{bno}
+	</update>
+
+
 </mapper>

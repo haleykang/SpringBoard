@@ -22,4 +22,7 @@ public interface BoardDao {
 
 	// 4. 게시글 삭제 구현
 	public int deleteBoard(int bno);
+
+	// 5. 게시글 수정 구현
+	public int myUpdate(BoardVO vo);
 }

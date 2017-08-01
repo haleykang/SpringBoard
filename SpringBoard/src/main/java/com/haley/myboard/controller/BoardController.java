@@ -102,9 +102,21 @@ public class BoardController {
 		// 1) 테이블에서 글 번호와 일치하는 데이터 가져와서 저장
 		BoardVO vo = boardService.updateBoard(bno);
 		// 2) 가져온 데이터를 model 객체에 저장
-		model.addAttribute("vo",vo);
+		model.addAttribute("vo", vo);
 		// 3) 게시글 수정 페이지로 이동
 		return "board/updateView";
+	}
+
+	// 7. 게시글을 수정하는 요청 처리
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String modify(BoardVO vo, RedirectAttributes attr) {
+		// 1) 게시글 수정
+		boardService.myUpdate(vo);
+		// 2) msg 메세지 전달
+		attr.addFlashAttribute("msg", "게시글이 수정되었습니다.");
+		// 3) list 요청으로 이동 - Redirect
+		return "redirect:list";
+
 	}
 
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!--for나 if를 사용하기위한 JSTL 태그 라이브러리 추가  -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,8 +37,10 @@
 		<div class="box-footer">
 			<button id="mainBt" class="btn btn-success">메인</button>
 			<button id="listBt" class="btn btn-warning">목록</button>
-			<button id="updateBt" class="btn btn-danger">수정</button>
-			<button id="deleteBt" class="btn btn-primary">삭제</button>
+			<c:if test="${login.id==vo.id}">
+				<button id="updateBt" class="btn btn-danger">수정</button>
+				<button id="deleteBt" class="btn btn-primary">삭제</button>
+			</c:if>
 		</div>
 
 	</div>
@@ -53,7 +57,7 @@
 				location.href = "list";
 			});
 		});
-		
+
 		// 수정 처리 버튼 -> 글 번호 파라미터 값 꼭 보내기 
 		$(function() {
 			$('#updateBt').on('click', function() {
@@ -67,7 +71,6 @@
 				location.href = "delete?bno=${vo.bno}";
 			});
 		});
-		
 	</script> </section>
 	<!-- 하단 공통 디자인 적용 -->
 	<%@include file="../include/footer.jsp"%>

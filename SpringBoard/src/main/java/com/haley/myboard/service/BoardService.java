@@ -25,8 +25,11 @@ public interface BoardService {
 
 	// 4. 게시글 삭제 구현
 	public int deleteBoard(int bno);
-	
-	// 5. 게시글 수정 구현
+
+	// 5. 게시글 수정 구현(수정 페이지로 이동)
 	public BoardVO updateBoard(int bno);
+
+	// 6. 게시글 수정 구현
+	public int myUpdate(BoardVO vos);
 
 }

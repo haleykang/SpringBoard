@@ -68,4 +68,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.getBoard(bno);
 	}
 
+	// 6. 게시글 실제 수정 처리 함수
+	@Override
+	public int myUpdate(BoardVO vo) {
+
+		return boardDao.myUpdate(vo);
+	}
+
 }

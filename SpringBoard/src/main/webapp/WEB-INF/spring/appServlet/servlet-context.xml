@@ -1,28 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<context:component-scan base-package="com.haley.myboard" />
-	
-	
-	
+
+	<!-- 인터셉터 설정 코드 추가 -->
+	<!-- Controller가 처리하지 못하는 요청은 WAS가 처리하도록 설정 -->
+	<default-servlet-handler />
+
+	<!-- 인터셉터 객체 생성 -->
+	<!-- id는 보통 인터셉터 클래스의 맨 앞 글자만 소문자로 바꿔서 설정 -->
+	<beans:bean class="com.haley.myboard.interceptor.LoginInterceptor"
+		id="loginInterceptor">
+	</beans:bean>
+
+	<!-- 인터셉터 객체 추가 -->
+	<beans:bean class="com.haley.myboard.interceptor.AuthInterceptor"
+		id="authInterceptor">
+	</beans:bean>
+
+	<!-- 인터셉터 설정 -->
+	<interceptors>
+		<!-- /board/write 요청이 오면 id가 authInterceptor인 인터셉터 동작 -->
+		<interceptor>
+			<mapping path="/board/write" />
+			<mapping path="/board/list" />
+			<mapping path="/board/detail" />
+			<mapping path="/board/delete" />
+			<mapping path="/board/update" />
+			<mapping path="/board/modify" />
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+
+		<!-- /user/loginPost 요청이 왔을 때 id가 loginInterceptor인 인터셉터가 동작하도록 설정 -->
+		<interceptor>
+			<mapping path="/user/loginPost" />
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
+	</interceptors>
+
+
 </beans:beans>

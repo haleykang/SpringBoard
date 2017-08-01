@@ -27,8 +27,11 @@
 			</div>
 			<div class="form-group">
 				<label>작성자</label> <input type="text" name="id" class="form-control"
-					value="${vo.id}" />
+					value="${vo.id}" readonly="readonly" />
 			</div>
+			<!-- 화면에 보이지 않고 서버에게 값을 전달하는 데이터 추가 -->
+			<input type="hidden" name="bno" value="${vo.bno}" />
+			
 			<div class="box-footer">
 				<button type="submit" class="btn btn-primary">수정완료</button>
 			</div>
