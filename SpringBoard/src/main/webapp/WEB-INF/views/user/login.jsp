@@ -28,7 +28,7 @@
 		<div id="loginfail" align="center"></div>
 		<div class="login-box-body">
 			<p class="login-box-msg">아이디와 비밀번호를 입력하세요</p>
-			
+
 			<!-- 로그인 form에 action값 주기 -->
 			<form action="loginPost" , method="post">
 				<div class="form-group has-feedback">
@@ -52,7 +52,11 @@
 					</div>
 					<div class="col-xs-2"></div>
 					<div class="col-xs-6">
-						<button class="btn btn-success btn-block btn-flat">회원가입</button>
+						<!-- 회원가입 링크 추가 -->
+						<!-- 링크가 헷갈리면 /프로젝트URL/Controller 요청 포맷/요청 이렇게 만들기-->
+						<!-- 프로젝트 URL 앞에 / 슬래쉬 추가하기 -->
+						<a href="/myboard/user/join"
+							class="btn btn-success btn-block btn-flat">회원가입</a>
 					</div>
 				</div>
 

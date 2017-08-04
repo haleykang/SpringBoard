@@ -9,8 +9,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 1. 로그인 처리 SQL -->
 	<!-- public UserVO login(UserVO userVO); -->
 	<select id="login" resultType="UserVO" parameterType="UserVO">
-		select * from springuser
+		select *
+		from springuser
 		where id=#{id} and pw=#{pw}
 	</select>
+
+	<!-- 2. 아이디 중복 체크 -->
+	<!-- public String idCheck(String id); -->
+	<select id="idCheck" resultType="String" parameterType="String">
+		select id
+		from springuser
+		where id = #{id}
+	</select>
+	
+	
 
 </mapper>

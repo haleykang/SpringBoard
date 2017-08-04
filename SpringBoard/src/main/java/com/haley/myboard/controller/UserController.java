@@ -40,7 +40,7 @@ public class UserController {
 
 		// 2) model 객체에 userVO 값 저장
 		model.addAttribute("login", userVO);
-		
+
 		// 3) 리턴타입이 void -> user/loginPost가 결과 View 페이지가 됨
 
 		// Interceptor 적용을 위해 하기 코드 삭제
@@ -69,5 +69,13 @@ public class UserController {
 		return "redirect:/";
 
 	}
+
+	// 4. 회원가입 페이지로 이동 (/user/join)처리 메소드
+	@RequestMapping(value = "join", method = RequestMethod.GET)
+	public void toJoin() {
+
+	}
+	
+	
 
 }

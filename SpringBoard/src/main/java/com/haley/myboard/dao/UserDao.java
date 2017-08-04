@@ -10,4 +10,7 @@ public interface UserDao {
 	// -> 사용자가 입력한 id와 pw를 매개변수로 받아서 일치할 경우 데이터를 리턴
 	public UserVO login(UserVO userVO);
 
+	// 2. 아이디 중복 체크
+	public String idCheck(String id);
+
 }

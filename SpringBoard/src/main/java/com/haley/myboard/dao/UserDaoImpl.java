@@ -19,4 +19,11 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne("user.login", userVO);
 	}
 
+	// 2. 아이디 중복 체크 SQL 연동
+	@Override
+	public String idCheck(String id) {
+
+		return sqlSession.selectOne("user.idCheck", id);
+	}
+
 }
