@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -67,12 +68,29 @@
 						<span>게시판</span> <i class="fa fa-angle-left pull-right"></i>
 				</a>
 					<ul class="treeview-menu">
-						<li><a href=""><i class="fa fa-circle-o"></i> 목록보기</a></li>
-						<li><a href=""><i class="fa fa-circle-o"></i> 게시물쓰기</a></li>
+						<li><a href="/myboard/board/list"><i
+								class="fa fa-circle-o"></i> 목록보기</a></li>
+						<li><a href="/myboard/board/write"><i
+								class="fa fa-circle-o"></i> 게시물쓰기</a></li>
 					</ul></li>
-				<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>로그인</span></a></li>
-				<li><a href="#"><i class="fa fa-circle-o text-yellow"></i>
-						<span>회원가입</span></a></li>
+
+
+				<!-- session으로 전달한 login 값이 null이면 로그인이 필요한 상태 -> 로그인 출력  -->
+				<c:if test="${login == null}">
+					<li><a href="/myboard/user/login"><i
+							class="fa fa-circle-o text-red"></i> <span>로그인</span></a></li>
+					<li><a href="/myboard/user/join"><i
+							class="fa fa-circle-o text-yellow"></i> <span>회원가입</span></a></li>
+				</c:if>
+				<!-- session으로 전달한 login 값이 null이 아니면 로그인 된 상태 -> 로그아웃 출력 -->
+				<c:if test="${login != null}">
+					<li><a href="/myboard/user/logout"><i
+							class="fa fa-circle-o text-red"></i> <span>로그아웃</span></a></li>
+				</c:if>
+
+
+
+
 			</ul>
 		</section>
 		<!-- /.sidebar -->
@@ -84,6 +102,6 @@
 		<section class="content-header">
 			<h1>스프링 게시판</h1>
 			<ol class="breadcrumb">
-				<li><a href="./"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li><a href="/myboard"><i class="fa fa-dashboard"></i> Home</a></li>
 			</ol>
 		</section>

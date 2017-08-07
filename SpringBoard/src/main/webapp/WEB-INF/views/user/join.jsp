@@ -18,7 +18,7 @@
 		$(function() {
 			// # -> 아이디 지정 문자
 			// id가 imgImp인 객체의 내용이 변경되면 실행할 내용 지정
-			$('#imgImp').on('change', function() {
+			$('#imgInp').on('change', function() {
 				readURL(this);
 			});
 		});
@@ -28,7 +28,7 @@
 			// 파일을 선택 했다면 
 			if (input.files && input.files[0]) {
 				// 파일의 이름 가져오기
-				var filename = input.file[0].name;
+				var filename = input.files[0].name;
 				// 파일 이름 중 뒤에서 3글자 가져오기
 				var ext = filename.substr(filename.length - 3, filename.length);
 				// 가져온 파일 이름 뒤 3글자로 확장자가 그림파일인지 확인

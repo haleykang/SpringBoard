@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.haley.myboard.domain.BoardVO;
@@ -35,7 +36,8 @@ public class BoardController {
 	// 처리할 요청 주소 : /board/write -> form 에서 action 값을 안 줬기 때문
 	// 1번과 2번의 함수 이름은 같아도 됨(단, 매개 변수는 달라야함)
 	@RequestMapping(value = "write", method = RequestMethod.POST)
-	public String write(HttpServletRequest request, RedirectAttributes attr) {
+	// -> 이미지 파일 추가를 위해 매개 변수를 MultipartHttpServletRequest로 변경
+	public String write(MultipartHttpServletRequest request, RedirectAttributes attr) {
 		// 1) writeBoard() 함수 실행
 		// => 매개 변수 request를 통해서 form에서 입력 받은 항목 가져와서
 		// => VO 클래스에 저장하고 BoardDao의 writeBoard() 함수를 실행시켜

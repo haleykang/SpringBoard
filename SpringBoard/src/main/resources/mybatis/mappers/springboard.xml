@@ -7,10 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="board">
 
 	<!-- 1. 글쓰기 public int writeBoard(BoardVO vo); -->
+	<!-- 이미지 추가 -->
 	<insert id="writeBoard" parameterType="BoardVO">
 		insert into springboard(
-		bno,title,content,id,ip)
-		values(boardseq.nextval,#{title},#{content},#{id},#{ip})
+		bno,title,content,id,ip,image)
+		values(boardseq.nextval,#{title},#{content},#{id},#{ip},#{image})
 	</insert>
 
 	<!-- 2. 목록 보기 public List<BoardVO> showList(); -->

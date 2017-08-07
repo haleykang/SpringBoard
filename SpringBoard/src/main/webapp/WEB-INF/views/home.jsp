@@ -8,6 +8,9 @@
 <%@include file="include/header.jsp"%>
 <section class="content">
 
+	<!-- 회원 가입 성공 메세지 출력 부분 삽입 -->
+	<p>${msg}</p>
+
 	<!-- 로그인 링크 생성 ** 수정 -->
 	<div class="box">
 		<!-- 로그인 화면으로 이동하는 링크 생성 -->

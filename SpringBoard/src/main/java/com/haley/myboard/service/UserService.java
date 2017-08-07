@@ -1,5 +1,8 @@
 package com.haley.myboard.service;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.haley.myboard.domain.UserDTO;
 import com.haley.myboard.domain.UserVO;
 
 public interface UserService {
@@ -10,5 +13,8 @@ public interface UserService {
 	// 2. 아이디 중복체크 처리
 	// 아이디 중복 -> false, 중복아님 true로 리턴 예정
 	public boolean idCheck(String id);
+
+	// 3. 회원 가입
+	public void insertUser(UserDTO userDTO, HttpServletRequest request);
 
 }

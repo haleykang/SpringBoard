@@ -13,4 +13,9 @@ public interface UserDao {
 	// 2. 아이디 중복 체크
 	public String idCheck(String id);
 
+	// 3. 회원 가입
+	// UserVO - User 테이블과 연결
+	// UserDTO - 회원 가입 form과 연결
+	public int insertUser(UserVO userVO);
+
 }

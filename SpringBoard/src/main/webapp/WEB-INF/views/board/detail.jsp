@@ -31,6 +31,15 @@
 				<label>작성자</label> <input type="text" name="id" class="form-control"
 					value="${vo.id}" readonly="readonly" />
 			</div>
+
+
+			<!-- 이미지 출력 영역 -->
+			<c:if test="${vo.image != null }">
+				<div>
+					<img id="img" width="200" height="200"
+						src="../boardimage/${vo.image}">
+				</div>
+			</c:if>
 		</div>
 
 		<!-- 필요한 버튼 추가 -->

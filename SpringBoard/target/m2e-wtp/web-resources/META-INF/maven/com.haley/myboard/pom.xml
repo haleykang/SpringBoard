@@ -66,6 +66,14 @@
 			<version>2.5.4</version>
 		</dependency>
 
+		<!-- 7. 파일 업로드를 위한 commons-fileupload 의존성 New!! -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
+
 
 		<!-- Spring -->
 		<dependency>

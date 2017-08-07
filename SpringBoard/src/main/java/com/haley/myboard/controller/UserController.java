@@ -1,5 +1,6 @@
 package com.haley.myboard.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.haley.myboard.domain.UserDTO;
 import com.haley.myboard.domain.UserVO;
 import com.haley.myboard.service.UserService;
 
@@ -75,7 +78,17 @@ public class UserController {
 	public void toJoin() {
 
 	}
-	
-	
+
+	// 5. 실제 회원 가입 요청 처리 메소드
+	@RequestMapping(value = "join", method = RequestMethod.POST)
+	public String join(UserDTO dto, HttpServletRequest request, RedirectAttributes attr) {
+		// 1) service 메소드 실행
+		userService.insertUser(dto, request);
+		// 2) 성공 메세지 저장
+		attr.addFlashAttribute("msg", "회원 가입을 성공하였습니다.");
+		// 3) home 페이지로 리다이렉트
+		return "redirect:/";
+
+	}
 
 }

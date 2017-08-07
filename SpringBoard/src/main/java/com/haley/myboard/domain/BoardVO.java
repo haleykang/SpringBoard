@@ -13,6 +13,18 @@ public class BoardVO {
 	private Date regdate;
 	private int readcnt;
 	private String ip;
+	
+	// 이미지 저장 변수 추가 
+	private String image;
+	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	// 2. getter setter 함수 구현
 	public int getBno() {

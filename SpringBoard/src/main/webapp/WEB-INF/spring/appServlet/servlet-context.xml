@@ -26,11 +26,20 @@
 
 	<context:component-scan base-package="com.haley.myboard" />
 
+	<!-- 파일 업로드를 처리할 클래스의 bean을 추가 -->
+	<beans:bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver">
+		<!-- 업로드 가능한 최대 파일 크기 10메가(10485760) -->
+		<beans:property value="10485760" name="maxUploadSize" />
+	</beans:bean>
+
 	<!-- 인터셉터 설정 코드 추가 -->
-	<!-- Controller가 처리하지 못하는 요청은 WAS가 처리하도록 설정 -->
+
+	<!-- 1. Controller가 처리하지 못하는 요청은 WAS가 처리하도록 설정 -->
 	<default-servlet-handler />
 
-	<!-- 인터셉터 객체 생성 -->
+	<!-- 2. 인터셉터 객체 생성 -->
 	<!-- id는 보통 인터셉터 클래스의 맨 앞 글자만 소문자로 바꿔서 설정 -->
 	<beans:bean class="com.haley.myboard.interceptor.LoginInterceptor"
 		id="loginInterceptor">
@@ -41,7 +50,7 @@
 		id="authInterceptor">
 	</beans:bean>
 
-	<!-- 인터셉터 설정 -->
+	<!-- 3. 인터셉터 설정 -->
 	<interceptors>
 		<!-- /board/write 요청이 오면 id가 authInterceptor인 인터셉터 동작 -->
 		<interceptor>

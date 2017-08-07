@@ -26,4 +26,11 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne("user.idCheck", id);
 	}
 
+	// 3. 회원 가입 SQL 연동
+	@Override
+	public int insertUser(UserVO userVO) {
+
+		return sqlSession.insert("user.insertUser", userVO);
+	}
+
 }
