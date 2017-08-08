@@ -13,10 +13,9 @@ public class BoardVO {
 	private Date regdate;
 	private int readcnt;
 	private String ip;
-	
-	// 이미지 저장 변수 추가 
+
+	// 이미지 저장 변수 추가
 	private String image;
-	
 
 	public String getImage() {
 		return image;

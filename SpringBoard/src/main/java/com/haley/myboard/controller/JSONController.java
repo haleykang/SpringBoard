@@ -1,6 +1,7 @@
 package com.haley.myboard.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.haley.myboard.domain.BoardVO;
 import com.haley.myboard.domain.UserVO;
+import com.haley.myboard.service.BoardService;
 import com.haley.myboard.service.UserService;
 
 //메소드에서 return하는 값을 JSON 형식의 문자열로 리턴해주는 컨트롤러
@@ -51,5 +54,39 @@ public class JSONController {
 		// 4) result 값을 저장한 map 리턴
 		return map;
 	}
+
+	@Autowired
+	private BoardService boardService;
+
+	// 3. 안드로이드 목록 보기 - 모바일에서 게시글의 리스트를 볼 수있도록 JSON으로 리턴
+	@RequestMapping("androidlist")
+	public Map<String, Object> list() {
+		// 1) 테이블 내용을 List 객체에 저장
+		List<BoardVO> list = boardService.showList();
+
+		// 2) 저장한 내용을 map으로 저장
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", list);
+
+		// 3) 맵을 리턴
+		return map;
+
+	}
+
+	// 4. 안드로이드 상세 보기 - 모바일에서 선택한 글 번호로, 글 번호에 해당하는 데이터 JSON으로 리턴
+	@RequestMapping("androiddetail")
+	public Map<String, Object> detail(@RequestParam("bno") int bno) {
+		// 1) bno를 기준으로 데이터 가져와서 저장
+		BoardVO boardVO = boardService.getBoard(bno);
+
+		// 2) 테이블에서 가져온 데이터를 Map에 저장
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", boardVO);
+
+		// 2) 데이터를 저장한 Map을 리턴
+		return map;
+	}
+
+	// ** JSON으로 리턴하는 경우 반드시 Chrome에서 데이터가 어떻게 출력되는지 확인 할 것
 
 }
